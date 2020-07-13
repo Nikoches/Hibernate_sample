@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface ItemDao {
 
-    void save(Item item);
+    Item save(Item item);
 
     Item findByid(Integer id);
 
-    void update(Item item);
+    Item update(Item item);
 
-    void delete(Item id);
+    Item delete(Item id);
 
     List<Item> getAll();
 
