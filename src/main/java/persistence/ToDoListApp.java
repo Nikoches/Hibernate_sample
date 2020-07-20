@@ -10,7 +10,8 @@ import java.util.function.Function;
 
 public class ToDoListApp implements ItemDao {
     private final static ToDoListApp toDoListApp = new ToDoListApp();
-    private final SessionFactory factory = HibernateUtils.getSessionFactory();
+    private final static SessionFactory factory = HibernateUtils.getSessionFactory();
+
     private ToDoListApp() {
     }
 
@@ -43,8 +44,7 @@ public class ToDoListApp implements ItemDao {
 
     @Override
     public Item findByid(Integer id) {
-        Session session = HibernateUtils.getSessionFactory().openSession();
-        return session.get(Item.class, id);
+        return this.tx(session -> session.get(Item.class, id));
     }
 
     @Override
@@ -85,5 +85,10 @@ public class ToDoListApp implements ItemDao {
         return this.tx(
                 session -> session.createQuery("FROM persistence.Item e WHERE e.done = true").list()
         );
+    }
+
+    public boolean isAuthorized(String login, String password) {
+        User user = this.tx(session -> session.get(User.class, login));
+        return user.getPwd().equals(password);
     }
 }

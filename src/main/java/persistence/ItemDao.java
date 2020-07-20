@@ -13,5 +13,5 @@ public interface ItemDao {
     Item delete(Item id);
 
     List<Item> getAll();
-
+    boolean isAuthorized(String login, String pwd);
 }

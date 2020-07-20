@@ -22,32 +22,6 @@
         }
     </style>
     <script>
-        // function first() {
-        //     $(document).ready($.ajax({
-        //         type: 'GET',
-        //         url: 'http://localhost:8080/cl/update',
-        //         dataType: 'json'
-        //     }).done(function (data) {
-        //         var table = document.getElementById("table");
-        //         // for(let i = 0;i < table.rows.length;i++){
-        //         //     table.deleteRow(i);
-        //         // }
-        //         for (let i = 0; i < data.length; i++) {
-        //             $('#table tr:last').after('<tr><td>' + data[i].name + '</td><td>' + data[i].description + '</td><td>' + '<input type="checkbox" id="chk" name="chk" ' + f(data[i].done) + '>' + '</td></tr>');
-        //         }
-        //     }).fail(function (err) {
-        //         console.log(err);
-        //     }));
-        //
-        //     function f(data) {
-        //         if (data) {
-        //             return "checked"
-        //         }
-        //         return "";
-        //     }
-        // }
-    </script>
-    <script>
         function clear() {
             var table = document.getElementById("table");
             for(let i = 1;i < table.rows.length;i++) {

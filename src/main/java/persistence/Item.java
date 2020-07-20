@@ -16,6 +16,7 @@ public class Item {
     @Column(name = "name")
     private String name;
 
+    private User author;
     public String getName() {
         return name;
     }

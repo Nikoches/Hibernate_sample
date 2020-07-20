@@ -50,4 +50,8 @@ public class Logic {
     public String getJsonTable(List items) {
         return new Gson().toJson(items);
     }
+
+    public boolean isAuthorized(String login, String pwd) {
+        return itemDao.isAuthorized(login,pwd);
+    }
 }
