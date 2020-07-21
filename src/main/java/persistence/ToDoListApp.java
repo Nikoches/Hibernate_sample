@@ -37,10 +37,11 @@ public class ToDoListApp implements ItemDao {
             return rsl;
         } catch (final Exception e) {
             session.getTransaction().rollback();
-            throw e;
+            e.getMessage();
         } finally {
             session.close();
         }
+        return null;
     }
 
     @Override
