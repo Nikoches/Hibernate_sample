@@ -15,6 +15,15 @@ public class ToDoListApp implements ItemDao {
     private ToDoListApp() {
     }
 
+    public static void main(String[] args) {
+        final Session session = factory.openSession();
+        final Transaction tx = session.beginTransaction();
+        List<Item> list = session.createQuery("From persistence.Item").list();
+        tx.commit();
+        System.out.println(list);
+        ToDoListApp app = ToDoListApp.getInstance();
+        //System.out.println(app.getAll());
+    }
     public static ToDoListApp getInstance() {
         return toDoListApp;
     }
