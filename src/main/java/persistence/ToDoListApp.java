@@ -9,22 +9,28 @@ import java.util.List;
 import java.util.function.Function;
 
 public class ToDoListApp implements ItemDao {
-    private final static ToDoListApp toDoListApp = new ToDoListApp();
-    private final static SessionFactory factory = HibernateUtils.getSessionFactory();
+    private static ToDoListApp toDoListApp;
+    private static SessionFactory factory = HibernateUtils.getSessionFactory();
+
+    private ToDoListApp(SessionFactory sessionFactory) {
+        factory = sessionFactory;
+    }
 
     private ToDoListApp() {
+
     }
 
-    public static void main(String[] args) {
-        final Session session = factory.openSession();
-        final Transaction tx = session.beginTransaction();
-        List<Item> list = session.createQuery("From persistence.Item").list();
-        tx.commit();
-        System.out.println(list);
-        ToDoListApp app = ToDoListApp.getInstance();
-        //System.out.println(app.getAll());
-    }
     public static ToDoListApp getInstance() {
+        if (toDoListApp == null) {
+            toDoListApp = new ToDoListApp();
+        }
+        return toDoListApp;
+    }
+
+    public static ToDoListApp getInstance(SessionFactory sessionFactory) {
+        if (toDoListApp == null) {
+            toDoListApp = new ToDoListApp(sessionFactory);
+        }
         return toDoListApp;
     }
 
@@ -37,7 +43,7 @@ public class ToDoListApp implements ItemDao {
             return rsl;
         } catch (final Exception e) {
             session.getTransaction().rollback();
-            e.getMessage();
+            System.out.println(e.getMessage());
         } finally {
             session.close();
         }
@@ -96,7 +102,9 @@ public class ToDoListApp implements ItemDao {
                 session -> session.createQuery("FROM persistence.Item e WHERE e.done = true").list()
         );
     }
-
+    public User getUser(Integer id) {
+        return this.tx(session -> session.get(User.class, id));
+    }
     public boolean isAuthorized(String login, String password) {
         User user = this.tx(session -> session.get(User.class, login));
         return user.getPwd().equals(password);

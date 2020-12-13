@@ -27,6 +27,6 @@
     </filter>
     <filter-mapping>
         <filter-name>Filter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/mm</url-pattern>
     </filter-mapping>
 </web-app>

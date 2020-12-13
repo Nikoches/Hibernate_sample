@@ -35,8 +35,8 @@ public class Logic {
         itemDao.save(item);
     }
 
-    public void delete(Item item) {
-        itemDao.delete(item);
+    public Item delete(Item item) {
+        return itemDao.delete(item);
     }
 
     public List<Item> getAll() {
