@@ -52,6 +52,6 @@ public class Logic {
     }
 
     public boolean isAuthorized(String login, String pwd) {
-        return itemDao.isAuthorized(login,pwd);
+        return itemDao.isAuthorized(login, pwd);
     }
 }

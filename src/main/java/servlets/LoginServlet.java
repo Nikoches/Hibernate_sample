@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        boolean role = logic.isAuthorized(req.getParameter("user"),req.getParameter("pwd"));
+        boolean role = logic.isAuthorized(req.getParameter("user"), req.getParameter("pwd"));
         this.getServletContext().log("Login Servlet == " + role);
         if (role) {
             Cookie userName = new Cookie("user", "login");
@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
             resp.addCookie(userName);
             resp.sendRedirect("main");
         } else {
-            req.setAttribute("login","false");
+            req.setAttribute("login", "false");
             req.getRequestDispatcher("Views/login.html").forward(req, resp);
         }
     }

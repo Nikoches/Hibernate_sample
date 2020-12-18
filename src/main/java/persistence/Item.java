@@ -78,10 +78,10 @@ public class Item {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){
+        if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()){
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
 
@@ -90,7 +90,7 @@ public class Item {
         if (done != item.done) {
             return false;
         }
-        if (!id.equals(item.id)){
+        if (!id.equals(item.id)) {
             return false;
         }
         if (!description.equals(item.description)) {
