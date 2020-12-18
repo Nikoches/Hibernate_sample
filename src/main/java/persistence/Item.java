@@ -78,15 +78,27 @@ public class Item {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
 
         Item item = (Item) o;
 
-        if (done != item.done) return false;
-        if (!id.equals(item.id)) return false;
-        if (!description.equals(item.description)) return false;
-        if (!name.equals(item.name)) return false;
+        if (done != item.done) {
+            return false;
+        }
+        if (!id.equals(item.id)){
+            return false;
+        }
+        if (!description.equals(item.description)) {
+            return false;
+        }
+        if (!name.equals(item.name)) {
+            return false;
+        }
         return user.equals(item.user);
     }
 
